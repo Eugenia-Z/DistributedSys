@@ -3,7 +3,7 @@ from typing import Callable, Dict, List
 
 class CharNotificationSystem:
     def __init__(self):
-        self.users: Dict[str, List[Callable[[str], None]]] = {}
+        self.users: Dict[str, List[Callable[[str], None]]] = {} # mapping username(str) to a list of callback functions. the callback function takes string as input and returns None
         self.lock = asyncio.Lock() # ensure thread-safe access to shared data 
         
     async def register_user(self, username: str, callback: Callable[[str], None]):
