@@ -29,3 +29,15 @@ Use cases:
 
 Example:
 A website uses a reverse proxy to distribute incoming requests to multiple backend web servers, improving performance and availability.
+
+# SSL: Secure Sockets Layers
+
+- 安全套接层：一种网络安全协议，用于在互联网上建立加密通道，保护数据传输安全
+- Encryption protocal designed to secure communication over the internet.
+- deprecated due to decurity vulnerabilities
+
+# TLS: Transport Layer Security
+
+- 传输层安全协议：一种用于在互联网上保护数据传输安全的加密协议，通常用于保护网站和用户之间的通信
+- Successor to SSL, stronger encryption, authentication and integrity.
+- Modern secure communication uses TLS.
