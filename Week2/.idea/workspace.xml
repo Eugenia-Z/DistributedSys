@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc56e12a-dcf1-4301-9c74-aeeb6b9add6b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tryThreads/src/MyThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tryThreads/src/NamingThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tryThreads/src/SimpleThreadExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Week3/Stateful vs. Stateless.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Week3/Stateful vs. Stateless.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,25 +12,25 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2rVliefyJqhJCx0oyTrAzlHo0sU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/eugenia/Documents/DistributedSys/Week2",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/eugenia/Documents/DistributedSys/Week2&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -55,6 +53,7 @@
       <option name="presentableId" value="Default" />
       <updated>1736652251443</updated>
       <workItem from="1736652252502" duration="68000" />
+      <workItem from="1736812815662" duration="139000" />
     </task>
     <servers />
   </component>
