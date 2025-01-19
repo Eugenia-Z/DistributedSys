@@ -161,7 +161,7 @@ Key Methods:
 - Barrier Action:
   Can execute a barrier action. vs. No action; only threads proceed.
 - Use Case:
-  Thread coordination in phases. vs. One-time events or dependencies.
+  Thread coordination in phases/at a specific point. vs. One-time events or dependencies.
 
 # Java Guards
 

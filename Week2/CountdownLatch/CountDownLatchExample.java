@@ -26,7 +26,7 @@ public class CountDownLatchExample {
 
         // Main thread waits for the workers to finish
         System.out.println("Main thread is waiting for workers to finish...");
-        latch.await(); // Main thread will wait until latch count reaches zero
+        latch.await(); // Main thread will wait/block until latch count reaches zero
         System.out.println("All workers have finished. Main thread can now proceed.");
     }
 }
