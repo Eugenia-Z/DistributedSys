@@ -1,6 +1,6 @@
 17 Fri 6pm & 18 Sat 6pm
 
-# 0. thread.start()
+# thread.start()
 
 - A new thread is created and scheduled by JVM
 - The start() method internally calls the run() method of the thread object. However, it does so in a new thread created by the JVM, not in the calling thread.
@@ -12,7 +12,7 @@
 - The actual execution of the thread depends on the thread scheduler, which is platform-dependent. The scheduler determines when the thread is allocated CPU time.
 - The run() method executes the thread’s code. Once the run() method completes, the thread transitions to the TERMINATED state.
 
-# 1. thread.join()
+# thread.join()
 
 - thread.join() is used to pause the exectuion of the current thread until the thread on which join() is called has finished executing.
 - the order of thread execution is determined by the JVM's thread scheduler. (the order is independend of the order in which .join() is called)
@@ -140,6 +140,17 @@ CyclicBarrier(int parties, Runnable barrierAction)
 ```
 
 # Countdown Latch
+
+The CountDownLatch class is a synchronization tool in Java that allows one or more threads to wait for other threads to finish their execution before proceeding. It maintains a count that is decremented each time a thread calls countDown(). When the count reaches zero, all waiting threads are released and can continue their execution.
+
+Key Methods:
+
+- await():
+  Causes the current thread to wait until the latch's count reaches zero.
+- countDown():
+  Decrements the latch's count. Once the count reaches zero, all waiting threads are released.
+- getCount():
+  Returns the current count of the latch.
 
 # CyclicBarrier vs. CountDownLatch
 
