@@ -117,6 +117,41 @@ advantages over synchronized:
 - Allows multiple threads to read a resource simultaneously, but only one thread to write
 - Helps improve performance when reads are more frequent than writes.
 
+# Barrier Synchronization
+
+In Java, barrier synchronization ensures that multiple threads wait at a common point before proceeding, achieving coordinated execution.
+
+A CyclicBarrier is a synchronization aid that allows a group of threads to wait at a barrier point until all threads in the group reach it. Once all threads have arrived at the barrier, the barrier is broken, and all waiting threads are released to continue their execution.
+
+Cyclic Nature:
+
+The barrier can be reused after all threads have been released, hence the term "cyclic."
+
+Key Methods
+
+- await(): Causes the calling thread to wait until all threads have reached the barrier. Throws BrokenBarrierException if the barrier is broken (e.g., one thread times out).
+- reset(): Resets the barrier to its initial state.
+- getParties(): Returns the number of threads required to trip the barrier.
+- isBroken():Checks if the barrier is in a broken state.
+
+```java
+CyclicBarrier(int parties)
+CyclicBarrier(int parties, Runnable barrierAction)
+```
+
+# Countdown Latch
+
+# CyclicBarrier vs. CountDownLatch
+
+- Reusability:
+  Reusable after all threads pass. vs. Single-use only.
+- Trigger Condition:
+  All threads call await(). vs. Count reaches zero.
+- Barrier Action:
+  Can execute a barrier action. vs. No action; only threads proceed.
+- Use Case:
+  Thread coordination in phases. vs. One-time events or dependencies.
+
 # Java Guards
 
 - A guard is essentially a conditional check that ensures a thread does not proceed until a required condition is satisfied. Guards are usually used with synchronization tools such as synchronized, wait(), notify()
@@ -127,6 +162,42 @@ advantages over synchronized:
 example:
 
 - A producer-consumer system where the consumer must wait until the buffer has data to consume.
+
+# Thread Pool
+
+- In Java, a thread pool is a group of pre-instantiated threads that are ready to execute tasks.
+- Thread pools manage the lifecycle of threads, improving performance and resource management in applications where multiple tasks need to run concurrently.
+- Instead of creating a new thread for each task, a thread pool reuses existing threads, reducing the overhead associated with thread creation and destruction.
+
+# Executor Framework:
+
+Java provides the Executor framework in the java.util.concurrent package to manage thread pools. The main interface is Executor, with ExecutorService and ScheduledExecutorService providing extended functionality.
+
+- The Executors utility class provides factory methods to create different types of thread pools.
+- Decouples the submission of a request from the execution policy used.
+
+```java
+ExecutorService fixedThreadPool = Executors.newFixedThreadPool(4);
+ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
+ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(2);
+
+```
+
+Execution service;
+
+- a sub interface of Executor that accepts Runnables and Callables.
+- From Runnable return: Future
+- From Callable return: value
+
+Executor Service shutdown()
+
+- Must shutdown an executor
+  - executorService.shutdown();
+- Stops accepting new requests but does not shutdown immediately
+  - Completes all tasks in queue.
+- This method will return when all the threads have finished execution
+  - executorService.awaitTermination();
 
 # The Dining Philosophers Problems
 
