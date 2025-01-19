@@ -1,6 +1,23 @@
 17 Fri 6pm
 
-# 1. .join() on threads
+# 0. thread.start()
+
+- A new thread is created and scheduled by JVM
+- The start() method internally calls the run() method of the thread object. However, it does so in a new thread created by the JVM, not in the calling thread.
+
+- When start() is called, the thread transitions from the NEW state to the RUNNABLE state:
+  NEW: A thread is created but not started.
+  RUNNABLE: The thread is ready to run and waiting for CPU time to execute.
+
+- The actual execution of the thread depends on the thread scheduler, which is platform-dependent. The scheduler determines when the thread is allocated CPU time.
+- The run() method executes the thread’s code. Once the run() method completes, the thread transitions to the TERMINATED state.
+
+# Thread Scheduler:
+
+The JVM's thread scheduler determines the order and duration of thread execution, which can vary across platforms.
+Threads may not execute in the order they are started, as scheduling depends on factors like thread priority and the underlying operating system.
+
+# 1. thread.join()
 
 - thread.join() is used to pause the exectuion of the current thread until the thread on which join() is called has finished executing.
 - the order of thread execution is determined by the JVM's thread scheduler. (the order is independend of the order in which .join() is called)
@@ -57,4 +74,30 @@ Solution:
 - 避免线程在调用递归方法或者跨层次调用时的死锁问题
 - 每次获取锁后，锁的计数器会增加；释放锁时，计数器或减少。直到 counter == 0， 锁才真正被释放
 - lock.lock() -> counter ++
-- lock.unlock -> counter--
+- lock.unlock -> counter --
+
+# 5. Read/Write Locks (ReentrantReadWriteLock ) 读写锁
+
+- Allows multiple threads to read a resource simultaneously, but only one thread to write
+- Helps improve performance when reads are more frequent than writes.
+
+# 6. Locks in Java:
+
+1. Synchronized (Instrinsic Locks)
+
+- every object in Java has an instrinsic lock (aka a monitor lock)
+- a thread must acquire the lock before executing a synchronized block oe method
+- key Characteristics:
+  - Reentrant: A thread can acquire the same lock multiple times without blocking itself.
+  - Blocking: Threads attempting to acquire the lock will block until the lock is released.
+
+2. Explicit Locks(java.util.concurrent.locks.Lock)
+
+- ReentrantLock
+- ReentrantReadWriteLock
+
+advantages over synchronized:
+
+- Non-blocking lock attemps (tryLock)
+- Supports interruptible lock acquisition
+- Fairness policy for lock acuiqistion
