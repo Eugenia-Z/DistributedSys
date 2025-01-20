@@ -16,5 +16,4 @@ public class MyThread extends Thread {
         t1.start();
         t2.start();
     }
-
 }
