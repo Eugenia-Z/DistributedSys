@@ -95,3 +95,8 @@ Other features:
   - Thin layer on top of the underlying IP protocol
   - Trades off raw performance over reliability.
 - Streaming audio, movies, video conferencing and gaming, are all UDP-appropriate applications
+
+# Remote Method Invocation (aka Remote Procedure Call RPC)
+- TCP sockets create a connection between a client and server which exchange data over that connection
+
+# Idempotence
