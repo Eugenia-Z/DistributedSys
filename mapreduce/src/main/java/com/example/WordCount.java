@@ -22,6 +22,7 @@ public class WordCount {
         private final static IntWritable one = new IntWritable(1);
         private Text word = new Text();
 
+        // Splits lines into words and emits each word with a count of 1
         public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
             StringTokenizer itr = new StringTokenizer(value.toString());
             while (itr.hasMoreTokens()) {
@@ -31,11 +32,14 @@ public class WordCount {
         }
     }
 
+    /// Combiner(optional): Performs partial aggregation to reduce network overhead
+
     // Reducer Class
     public static class IntSumReducer
             extends Reducer<Text, IntWritable, Text, IntWritable> {
         private IntWritable result = new IntWritable();
 
+        // Aggregates the counts for each word and writes the results
         public void reduce(Text key, Iterable<IntWritable> values, Context context)
                 throws IOException, InterruptedException {
             int sum = 0;
