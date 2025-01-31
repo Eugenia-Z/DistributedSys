@@ -30,7 +30,8 @@ public class SkierServlet extends HttpServlet {
         } else {
             res.setStatus(HttpServletResponse.SC_OK);
             // Process URL parameters (urlParts contains URL segments)
-            res.getWriter().write("It works! URL Parts: " + String.join(", ", urlParts));
+            res.getWriter().write("It works!");
+            System.out.println("URL Parts: " + String.join(", ", urlParts));
         }
     }
 
