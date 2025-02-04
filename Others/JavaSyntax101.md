@@ -18,3 +18,9 @@ Impls (Concreate classes):
   1. hashTable w linked list -> maintain Insertion order
      1.1 add/remove/contains O(1), iteration O(n)
   2. Slighly slower than HashSet but maintains order
+
+======== String.format() ========
+String.format("formatString", arguments);
+
+- "formatString" 包含占位符 %d, %s 等的模版字母串，占位符会被后续的参数替代
+- arguments 时将要插入到模版中的数据，顺序和占位符的位置要一一对应
