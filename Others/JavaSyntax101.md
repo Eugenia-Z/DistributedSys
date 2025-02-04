@@ -96,7 +96,7 @@ Artifact 是 Maven 项目产出的构件（JAR、WAR、POM 等）。
 Maven 依赖管理基于 artifact，它们可以存储在本地或远程仓库。
 可以使用 mvn install 本地安装，或 mvn deploy 发布到远程仓库。
 
-======= POM ======
+======= POM =======
 POM 是 Project Object Model 的缩写。
 
 POM (Project Object Model) is the fundamental unit of configuration in Apache Maven.
