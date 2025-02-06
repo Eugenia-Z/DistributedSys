@@ -2,7 +2,7 @@ public class RequestCounterBad {
     private static final int NUM_THREADS = 100000;
     private int count = 0; // shared vairable for all threads
 
-    public void inc() {
+    public synchronized void inc() {
         count++;
     }
 
@@ -22,3 +22,9 @@ public class RequestCounterBad {
         System.out.println("Value should be " + NUM_THREADS + " - it is: " + counter.getVal());
     }
 }
+
+// output: Value should be 100000-it is:99999
+// an example of race condition
+
+// After adding synchronized keyword on inc()
+// Value should be 100000 - it is: 100000

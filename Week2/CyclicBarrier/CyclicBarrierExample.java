@@ -14,7 +14,7 @@ public class CyclicBarrierExample {
          */
         CyclicBarrier barrier = new CyclicBarrier(NUM_WORKERS, () -> {
             System.out.println("All workers have reached the barrier. Proceeding to the next phase");
-        }); // when all threads reach the barrier, line 10 is executed by one thread
+        }); // when all threads reach the barrier, line 16 is executed by the main thread
 
         Runnable workerTask = () -> {
             try {
@@ -23,7 +23,7 @@ public class CyclicBarrierExample {
                 Thread.sleep((long) (Math.random() * 1000));
 
                 System.out.println(workerName + " reached the barrier.");
-                barrier.await(); // wait for all workers
+                barrier.await(); // wait for all workers to reach the barrier
 
                 System.out.println(workerName + " is working on phase 2...");
                 Thread.sleep((long) (Math.random() * 1000));
@@ -41,3 +41,24 @@ public class CyclicBarrierExample {
         }
     }
 }
+
+// output:
+/*
+ * Worker 2 is working on phase 1...
+ * Worker 3 is working on phase 1...
+ * Worker 1 is working on phase 1...
+ * Worker 1 reached the barrier.
+ * Worker 3 reached the barrier.
+ * Worker 2 reached the barrier.
+ * All workers have reached the barrier. Proceeding to the next phase
+ * Worker 2 is working on phase 2...
+ * Worker 1 is working on phase 2...
+ * Worker 3 is working on phase 2...
+ * Worker 1 reached the barrier.
+ * Worker 3 reached the barrier.
+ * Worker 2 reached the barrier.
+ * All workers have reached the barrier. Proceeding to the next phase
+ * Worker 2 is finishing work.
+ * Worker 3 is finishing work.
+ * Worker 1 is finishing work.
+ */
