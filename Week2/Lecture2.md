@@ -132,7 +132,7 @@ Key Methods
 - await(): Causes the calling thread to wait until all threads have reached the barrier. Throws BrokenBarrierException if the barrier is broken (e.g., one thread times out).
 - reset(): Resets the barrier to its initial state.
 - getParties(): Returns the number of threads required to trip the barrier.
-- isBroken():Checks if the barrier is in a broken state.
+- isBroken(): Checks if the barrier is in a broken state.
 
 ```java
 CyclicBarrier(int parties)
@@ -223,3 +223,21 @@ Solution:
 1. 资源分配策略：根据哲学家 id 的奇偶性，决定谁拿筷子
 2. use lock，non-blocking。
 3. use semaphore
+
+# Callable vs. Runnable
+
+都用于在 Java 中创建并发任务。区别如下：
+
+Callable：
+
+1. 有返回值：返回 Generics T （signature: T call() throws Exception）
+2. 可以抛出 Exception
+3. 适用于 ExecturorService.submit(Callable<T>)
+4. 通过 Future.get()返回结果
+
+Runnable
+
+1. 无返回值（run()只能执行任务，不能返回结果）
+2. 不能抛出 checked exception
+3. 适用于 Threads or ExecutorService.submit(Runnable)
+4. 不能获取结果，通常通过共享变量或回调通知
