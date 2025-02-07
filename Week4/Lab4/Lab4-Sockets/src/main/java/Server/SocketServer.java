@@ -20,6 +20,8 @@ public class SocketServer {
         while(true){
             // accept connection and start thread
             Socket clientSocket = m_ServerSocket.accept();
+
+            // multi-thread handled here
             SocketHandlerThread server = new SocketHandlerThread(clientSocket, threadCount);
             server.start();
         }

@@ -17,12 +17,12 @@ public class SocketHandlerThread extends Thread{
     }
     public void run() {
         threadCount.incrementCount();
-        System.out.println("Accepted Client: Address -" + clientSocket.getInetAddress().getHostName());
+        System.out.println("Accepted Client: Address - " + clientSocket.getInetAddress().getHostName());
         try{
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             PrintWriter out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
             String clientID = in.readLine();
-            System.out.println("Client ID is :" + clientID);
+            System.out.println("Client ID is: " + clientID);
             out.println("Active Server Thread Count = " + Integer.toString(threadCount.getCount()));
             out.flush();
             System.out.println("Reply sent");

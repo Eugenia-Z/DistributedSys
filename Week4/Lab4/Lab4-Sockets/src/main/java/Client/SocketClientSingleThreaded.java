@@ -29,7 +29,7 @@ public class SocketClientSingleThreaded {
             Socket socket = new Socket(hostName, port);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out.println("Client ID is: " + Long.toString(clientID));
+            out.println(Long.toString(clientID));
 
             System.out.println(in.readLine());
 
