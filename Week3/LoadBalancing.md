@@ -24,3 +24,7 @@ Load balancing policy determines how incoming rquests are distributed across mul
 5. Random Selection
 
 - Selects a server randomly for each request, useful for evenly distributing traffic in a simple setup.
+
+6. Sticky Sessions (Session Persistence)
+
+– A user’s requests are routed to the same server for stateful applications.
