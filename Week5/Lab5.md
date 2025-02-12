@@ -114,3 +114,9 @@ Minimum number of seconds to run all queries: 0.000 seconds
 Maximum number of seconds to run all queries: 0.000 seconds
 Number of clients running queries: 1
 Average number of queries per client: 1
+
+/usr/local/mysql-8.4.2-macos14-arm64/bin/mysqlslap --user=root --password=dbms2024oct --host=localhost --port=3306 --concurrency=50 --iterations=200 --query="SELECT \* FROM mytestdb.records WHERE ProblemID = 111 AND PassOrFail=1"
+
+# Document
+
+https://dev.mysql.com/doc/refman/8.0/en/mysqlslap.html
