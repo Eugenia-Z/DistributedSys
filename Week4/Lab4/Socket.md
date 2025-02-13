@@ -19,7 +19,7 @@ Socket（套接字）是一种网络通信机制，用于在不同计算机或�
 
 # Server Socket
 
-- Waits for incoming client connections
+- Waits for incoming client connectionss
 - Acts as a listener that binds to a specific port and IP address and listens for connection requests
 - Once a request is received, it accepts the connection and creates a new socket to handle communication with the client
 
