@@ -52,11 +52,24 @@ known as Hot Partition:
 1. use a load balancer, when CPU utilization reaches over 70% create a new instance
 2. Virtual Nodes -> generate multiple hash values for a server so that data can be distirbuted more evenly.
 
-3. 数据分布不均（热点问题）
-   如果节点或虚拟节点分布不均衡，某些节点可能会存储过多数据，导致负载不均。
-   解决方案：
-   ✅ 采用 虚拟节点（virtual nodes），让每个物理节点对应多个哈希位置，均衡负载。
-   ✅ 选择更优的 哈希函数（如 MurmurHash、FNV-1a），避免数据倾斜。
-   ✅ 结合 负载感知调度，根据节点性能分配更多或更少的虚拟节点。
+数据分布不均（热点问题）：
+如果节点或虚拟节点分布不均衡，某些节点可能会存储过多数据，导致负载不均。
+解决方案：
+✅ 采用 虚拟节点（virtual nodes），让每个物理节点对应多个哈希位置，均衡负载。
+✅ 选择更优的 哈希函数（如 MurmurHash、FNV-1a），避免数据倾斜。
+✅ 结合 负载感知调度，根据节点性能分配更多或更少的虚拟节点。
 
 handle weights on the ring itself. or handle weights on the hashing function
+
+2. 扩容/缩容导致的数据迁移
+   传统哈希取模（mod N）方式会导致大规模数据重分布，而一致性哈希虽然减少了数据迁移，但仍有部分数据需要移动。
+   解决方案：
+   ✅ 使用 跳跃一致性哈希（Jump Consistent Hashing），减少数据重分布量。
+   ✅ 采用 数据预分片（pre-sharding），将数据划分为固定数量的片（shard），减少节点变化带来的影响。
+   ✅ 通过 渐进式扩容（progressive rebalancing），逐步调整负载，而不是一次性迁移大量数据。
+3. 虚拟节点管理复杂度高
+   虚拟节点的引入可以均衡负载，但如果设置不合理，可能会增加查找开销和管理复杂度。
+   解决方案：
+   ✅ 设定 合理的虚拟节点数量，通常一个物理节点对应多个虚拟节点（如 100-500 个）。
+   ✅ 采用 动态负载均衡算法，根据节点的实际负载调整虚拟节点分配。
+   ✅ 使用 客户端缓存（client-side caching），减少频繁的哈希计算和网络请求。
