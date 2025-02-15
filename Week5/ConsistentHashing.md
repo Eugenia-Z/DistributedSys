@@ -40,3 +40,23 @@
 
 为每台服务器生成多个哈希值，均匀分布在哈希环上。
 这样可以让数据更加均匀地分配，避免负载不均衡的问题。
+
+# Issues with Consistent Hashing
+
+1. Uneven data distribution ("Hotspot")
+   "celebrity accounts get more traffic coming in"
+   potential sol: same popular movie hashed into multiple values so that get distributed on different servers
+
+known as Hot Partition:
+
+1. use a load balancer, when CPU utilization reaches over 70% create a new instance
+2. Virtual Nodes -> generate multiple hash values for a server so that data can be distirbuted more evenly.
+
+3. 数据分布不均（热点问题）
+   如果节点或虚拟节点分布不均衡，某些节点可能会存储过多数据，导致负载不均。
+   解决方案：
+   ✅ 采用 虚拟节点（virtual nodes），让每个物理节点对应多个哈希位置，均衡负载。
+   ✅ 选择更优的 哈希函数（如 MurmurHash、FNV-1a），避免数据倾斜。
+   ✅ 结合 负载感知调度，根据节点性能分配更多或更少的虚拟节点。
+
+handle weights on the ring itself. or handle weights on the hashing function
