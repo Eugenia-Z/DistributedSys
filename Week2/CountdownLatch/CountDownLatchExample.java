@@ -34,8 +34,8 @@ public class CountDownLatchExample {
 // line 28 will print out first.
 // 1. new Thread(...).start(); 只是启动线程，不会阻塞 main 线程。主线程不会等待 worker
 // 线程启动完成，而是立即继续执行。
-// 2. line 28 executes before latch.await(); latche.await()
-// 只会在主线程执行到这一行时阻塞，等待worker线程完成工作。
+// 2. line 28 executes before latch.await();
+// latche.await()只会在主线程执行到这一行时阻塞，等待worker线程完成工作。
 
 /*
  * 为什么大概率 Main thread is waiting for workers to finish...先被打印？
