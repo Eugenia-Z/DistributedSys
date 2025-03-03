@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Lambda function deployment with Java 17 runtime
+Description: Lambda function deployment with Java 21 runtime
 
 Parameters:
   LambdaHandler:
@@ -18,22 +18,10 @@ Resources:
     Properties:
       FunctionName: Eugenia-lambda-function
       Handler: !Ref LambdaHandler
-      Role: !GetAtt LambdaExecutionRole.Arn
+      Role: arn:aws:iam::087702913441:role/c145811a3776739l8957353t1w08770291344-LambdaSLRRole-mrwVZF3KbJFJ
       Code:
         S3Bucket: !Ref S3BucketName
         S3Key: !Ref S3Key
-      Runtime: java17
+      Runtime: java21
       Timeout: 10
       MemorySize: 512
-  LambdaExecutionRole:
-    Type: AWS::IAM::Role
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: 2012-10-17
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service: lambda.amazonaws.com
-            Action: sts:AssumeRole
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole

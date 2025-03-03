@@ -22,3 +22,4 @@ public class LambdaHandler implements RequestHandler<Request, Response> {
 record Request(String name, String questions){}
 record Response(String answer){}
 // Simple records that represent in the input and output of our Lambda function, which are generic parameters in the requestHandler Interface.
+// record 类型是Java 14引入的功能，用来定义不可变的数据对象。record类会自动生成构造函数、getter方法，equals，hashcode和toString方法。
