@@ -63,4 +63,9 @@ Round-robin dispatching:
 
 Acknowledgement:
 - Acks must be sent on the same channel that received the delivery. Attempt to acknowledge using a different channel will result in a channel-level protocol exception.
+
+Fair Dispatching:
+- use channel.basicQos(prefetchCount=1);
+- tells RabbitMQ not to give more than one message to a worker at a time.
+
  */
