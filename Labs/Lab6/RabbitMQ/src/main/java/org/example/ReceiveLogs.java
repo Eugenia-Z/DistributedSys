@@ -2,6 +2,8 @@ package org.example;
 
 import com.rabbitmq.client.*;
 
+import java.nio.charset.StandardCharsets;
+
 public class ReceiveLogs {
     private static final String EXCHANGE_NAME = "logs";
 
@@ -18,9 +20,13 @@ public class ReceiveLogs {
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-            String message = new String(delivery.getBody(), "UTF-8");
+            String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
             System.out.println(" [x] Received '" + message + "'");
         };
         channel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });
     }
 }
+/*
+String queueName = channel.queueDeclare().getQueue();
+In Java client, when we supply no parameters to queueDeclare() we create a non-durable, exclusive, auto delete queue with a generated name:
+ */
