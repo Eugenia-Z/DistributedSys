@@ -25,6 +25,5 @@ public class EmitLog {
              System.out.println(" [x] Sent '" + message + "'");
         }
     }
-
 }
 

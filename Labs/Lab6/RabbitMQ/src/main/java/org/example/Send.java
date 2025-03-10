@@ -16,8 +16,7 @@ public class Send {
         try {
             Connection connection = factory.newConnection();
             Channel channel = connection.createChannel();
-            // Declaring a queue is idempotent - it will only be created if it doesn't exist
-            // already.
+            // Declaring a queue is idempotent - it will only be created if it doesn't exist already.
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             String message = "Hello Kitty";
             channel.basicPublish("", QUEUE_NAME, null, message.getBytes()); // Message content is a byte array.
