@@ -241,3 +241,22 @@ Runnable
 2. 不能抛出 checked exception
 3. 适用于 Threads or ExecutorService.submit(Runnable)
 4. 不能获取结果，通常通过共享变量或回调通知
+
+# 线程池 submit() vs. execute()
+
+1. submit(): return a Future object, 可以通过 Future 对象来查询任务的执行状态、获取返回值或者取消任务
+
+```java
+Future<?> future = executor.submit(() -> {
+  // task
+})
+Object result = future.get();
+```
+
+2. execute() 不返回任何结果，只能执行任务，而不能获取执行状态或结果，适用于那些不需要返回值的任务
+
+```java
+executor.execute(() -> {
+  // task
+})
+```
