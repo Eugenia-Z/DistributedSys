@@ -97,3 +97,21 @@ try (Jedis jedis = pool.getResource()) {
 pool.close();
 
 ```
+
+# 层级嵌套
+
+组织和存储相关数据，类似路径/命名空间
+
+```java
+String verticalKey = String.format("skier:%d:%s:%d:verticals", skierID, seasonID, dayID);
+```
+
+skier:{skierID}:{seasonID}:{dayID}:verticals
+"skier:123:2025:10:verticals"
+这个键可以用于存储与滑雪者 123 在 2025 年的第 10 天滑雪的垂直滑行数据相关的信息。
+
+- {skierID}:{seasonID}:{dayID} 这样的键是由这三个变量（滑雪者 ID、季节 ID、日期 ID）共同决定的。通过这些变量，可以唯一标识特定滑雪者在特定季节和日期的某项数据
+- skier: 这个字段就是为了在键名中引入命名空间，使得不同类型的数据能够清晰地区分开来，避免冲突，并且增加数据模型的可扩展性
+  - 命名空间（Namespace）：使用 skier: 前缀作为命名空间，可以将与滑雪者相关的数据与其他类型的数据区分开来。
+  - 数据分组和可扩展性：如果没有 skier: 这个前缀，所有的键就直接是 {skierID}:{seasonID}:{dayID} 这样的格式。当数据量变大时，随着滑雪者、季节和日期的增加，可能会产生很多类似的键，导致数据管理变得困难。
+  - skier: 让你的键具有更多的上下文信息，帮助开发者更容易理解数据的含义。例如，skier:123:2025:10:verticals 就明显表达了这个键是关于滑雪者 ID 为 123 在 2025 年 10 日的垂直滑行数据。
