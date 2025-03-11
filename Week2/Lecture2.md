@@ -244,6 +244,8 @@ Runnable
 
 # 线程池 submit() vs. execute()
 
+## 返回值
+
 1. submit(): return a Future object, 可以通过 Future 对象来查询任务的执行状态、获取返回值或者取消任务
 
 ```java
@@ -260,3 +262,8 @@ executor.execute(() -> {
   // task
 })
 ```
+
+## 异常处理
+
+1. submit() 如果在任务执行过程中抛出 exception，会被封装在 Future object 的 get()中，调用 get()时会抛出 ExecutionException，可以捕获
+2. execute(): 如果任务抛出异常，异常会直接被丢弃。没有任何机制来捕获或处理任务中的异常。
