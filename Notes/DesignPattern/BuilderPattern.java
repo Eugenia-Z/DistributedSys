@@ -18,6 +18,11 @@
  2. Builder Interface(Abstract Builder) - defines the building steps
  3. Concrete Builder - implements the steps to construct the object
  4. Direction - Manages the construction process
+
+ When to use?
+ 1. when creating objects with many optional parameters
+ 2. when working with immutable objects
+ 3. when the construction process is complex and should be separated from the object itself.
  */
 
 // product class
