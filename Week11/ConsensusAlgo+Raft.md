@@ -118,6 +118,46 @@ Leader（领导者）：负责处理客户端请求，并同步日志给 Followe
 Follower（跟随者）：被动接受 Leader 发送的日志，若 Leader 失联则可参与选举。
 Candidate（候选者）：在选举阶段尝试获取多数选票，以成为 Leader。
 
+1. Leader accepts all updates
+2. Defines order of updates
+3. Sends updates to replicas in defined order
+4. All replicas maintain identical committed state
+5. Updates maintained in a log at each replica
+
+# How does Raft work
+
+1. All client updates sent to leader replica
+2. Leaders appends updates to local uncommited log
+3. Leader sends updates to followers using AppendEntries() -> Value, term, log position
+4. Followers persist entries to local uncommited log and acknowledge to leader
+5. When majority of replicas acknowldge:
+   5.1 leader moves updated to commited log
+   5.2 Communicates decision to all replicas
+
+6. Followers maintain an election timer
+7. No heartbeat in timeout period, follower start an election
+   7.1 Changes state to candidate
+   7.2 Increments election term (logical clock)
+   7.3 Sends requestVote() to all nodes
+   7.4 Votes for itself
+8. If majority of votes received, follower becomes leader
+9. if not, remains candidate and resets election timer
+
+# Raft on Safety
+
+1. Candidate cannot receive vote from replica with more up-to-date
+   commited log
+   1.1 Candidate backs down
+   1.2 New election started
+2. Ensures new leader has all commited entries from previous term
+3. Two followers start election simultaneously?
+   3.1 Increment terms
+   3.2 Send RequestVote()
+4. Mitigate by rule:
+   4.1 Any node can only vote once within a single term
+   4.2 one candidate can win
+   4.3 neither wins - reset election timers
+
 # Netty
 
 Asynchronou event-driven network application framework for building high-performance, scalable network applications in Java. It’s widely used for handling network protocols like HTTP, WebSockets, and custom TCP/UDP applications.
