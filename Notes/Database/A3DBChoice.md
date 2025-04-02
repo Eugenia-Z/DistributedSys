@@ -20,7 +20,7 @@ AWS RDB/Posgres/Aurora
 Pros:
 
 1. strong SQL queries, join, group by, index
-2. Reliable, ACID (support transaction - atomicity,consistency,isolation,durability)
+2. Reliable, ACID (support transaction - atomicity, consistency, isolation, durability)
 3. Aurora is extensible
 
 Cons:
