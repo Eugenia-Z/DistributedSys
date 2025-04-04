@@ -111,3 +111,48 @@ for (Map<String, AttributeValue> item : response.items()) {
 }
 
 ```
+
+本质还是设计表结构，明确要实现的业务逻辑，然后实现 JAVA 查询代码
+
+A4 GETAPI 带分页
+
+```java
+public PageResult getLiftRidesForSkier(
+    int resortID, String seasonID, int dayID, int skierID,
+    Map<String, AttributeValue> exclusiveStartKey, int pageSize) {
+  try {
+    String sortKeyPrefix = resortID + "$" + dayID + "$";
+
+    QueryConditional keyCondition = QueryConditional
+        .sortBeginsWith(k -> k.partitionValue(skierID).sortValue(sortKeyPrefix));
+
+    Expression filterExp = Expression.builder()
+        .expression("seasonID = :seasonID")
+        .putExpressionValue(":seasonID", AttributeValue.builder().s(seasonID).build())
+        .build();
+
+    QueryEnhancedRequest.Builder requestBuilder = QueryEnhancedRequest.builder()
+        .queryConditional(keyCondition)
+        .filterExpression(filterExp)
+        .limit(pageSize);  // 每页数量
+
+    if (exclusiveStartKey != null && !exclusiveStartKey.isEmpty()) {
+      requestBuilder.exclusiveStartKey(exclusiveStartKey);  // 上一页的最后一个 key
+    }
+
+    SdkIterable<Page<LiftRide>> results = skierLiftRidesTable.query(requestBuilder.build());
+
+    Page<LiftRide> page = results.iterator().next(); // 只取一页
+
+    return new PageResult(
+        new ArrayList<>(page.items()),
+        page.lastEvaluatedKey()
+    );
+
+  } catch (Exception e) {
+    e.printStackTrace();
+    return new PageResult(new ArrayList<>(), null);
+  }
+}
+
+```
