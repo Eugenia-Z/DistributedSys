@@ -1,4 +1,4 @@
-package org.example;
+/* package org.example;
 import io.grpc.stub.StreamObserver;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -9,8 +9,8 @@ import io.grpc.stub.StreamObservers;
  * @author eugenia
  * @date 3/11/25
  */
-public class GrpcServer{
-    public static void main(String[] args) throws Exception{
+public class GrpcServer {
+    public static void main(String[] args) throws Exception {
         // Create and start gRPC service
         Server server = ServerBuilder.forPort(8080)
                 .addService(new GreeterImpl())
@@ -22,6 +22,7 @@ public class GrpcServer{
 
         server.awaitTermination();
     }
+
     static class GreeterImpl extends GreeterGrpc.GreeterImplBase{
         @Override
         public void sayHello(HelloRequest request, StreamObservers<HelloResponse> responseObserver){
@@ -35,4 +36,4 @@ public class GrpcServer{
             responseObserver.onCompleted();
         }
     }
-}
+}*/
