@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package adsystem;
+
+option java_package = "org.example.grpc.adsystem";
+option java_outer_classname = "AdSystemProto";
+
+service CandidateService{
+  rpc GetCandidates (CandidateRequest) returns (CandidateResponse);
+}
+
+message CandidateRequest{
+  string userId = 1;
+  string adSlotId = 2;
+}
+message Ad{
+  string adId = 1;
+  string title = 2;
+  double bid = 3;
+}
+message CandidateResponse{
+  repeated Ad ads = 1;
+}
