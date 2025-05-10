@@ -1,18 +1,18 @@
 syntax = "proto3";
+
 package hello;
 
-// define a simple request and response
-message HelloRequest{
-  string name = 1;
-}
+option java_package = "org.example.grpc.hello";
+option java_outer_classname = "HelloProto";
 
-message HelloResponse{
-  string message = 1;
-}
-
-// define service interface
-service Greeter{
+service Greeter {
   rpc sayHello(HelloRequest) returns (HelloResponse);
 }
 
-// protoc --java_out=./src/main/java --grpc-java_out=./src/main/java --proto_path=./ src/main/proto/hello.proto
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloResponse {
+  string message = 1;
+}
